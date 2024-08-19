@@ -11,6 +11,13 @@
 		0727A3F62C70FEF500538DA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0727A3F52C70FEF500538DA9 /* ContentView.swift */; };
 		0727A3F82C70FEF700538DA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0727A3F72C70FEF700538DA9 /* Assets.xcassets */; };
 		0727A3FB2C70FEF700538DA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0727A3FA2C70FEF700538DA9 /* Preview Assets.xcassets */; };
+		0727A4022C70FF5D00538DA9 /* ContentViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0727A4012C70FF5D00538DA9 /* ContentViewVM.swift */; };
+		0727A4042C70FF8900538DA9 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0727A4032C70FF8900538DA9 /* Product.swift */; };
+		0727A4062C71035800538DA9 /* GridProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0727A4052C71035800538DA9 /* GridProductView.swift */; };
+		07EE3F6D2C73ABCF004D5A6A /* MessageSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE3F6C2C73ABCF004D5A6A /* MessageSticker.swift */; };
+		07EE3F6F2C73ABEA004D5A6A /* AmountBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE3F6E2C73ABEA004D5A6A /* AmountBtn.swift */; };
+		07EE3F712C73AC04004D5A6A /* AddToCartBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE3F702C73AC04004D5A6A /* AddToCartBtn.swift */; };
+		07EE3F742C73B29E004D5A6A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE3F732C73B29E004D5A6A /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,13 @@
 		0727A3F52C70FEF500538DA9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0727A3F72C70FEF700538DA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0727A3FA2C70FEF700538DA9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0727A4012C70FF5D00538DA9 /* ContentViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewVM.swift; sourceTree = "<group>"; };
+		0727A4032C70FF8900538DA9 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		0727A4052C71035800538DA9 /* GridProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridProductView.swift; sourceTree = "<group>"; };
+		07EE3F6C2C73ABCF004D5A6A /* MessageSticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSticker.swift; sourceTree = "<group>"; };
+		07EE3F6E2C73ABEA004D5A6A /* AmountBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountBtn.swift; sourceTree = "<group>"; };
+		07EE3F702C73AC04004D5A6A /* AddToCartBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartBtn.swift; sourceTree = "<group>"; };
+		07EE3F732C73B29E004D5A6A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				0727A3F32C70FEF500538DA9 /* SparInternTaskApp.swift */,
-				0727A3F52C70FEF500538DA9 /* ContentView.swift */,
+				0727A4072C722DF300538DA9 /* Views */,
+				0727A4082C722E0600538DA9 /* Model */,
+				07EE3F722C73B287004D5A6A /* Services */,
 				0727A3F72C70FEF700538DA9 /* Assets.xcassets */,
 				0727A3F92C70FEF700538DA9 /* Preview Content */,
 			);
@@ -65,6 +81,43 @@
 				0727A3FA2C70FEF700538DA9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0727A4072C722DF300538DA9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				07EE3F6B2C73ABBE004D5A6A /* SubViews */,
+				0727A4052C71035800538DA9 /* GridProductView.swift */,
+				0727A3F52C70FEF500538DA9 /* ContentView.swift */,
+				0727A4012C70FF5D00538DA9 /* ContentViewVM.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0727A4082C722E0600538DA9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0727A4032C70FF8900538DA9 /* Product.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		07EE3F6B2C73ABBE004D5A6A /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				07EE3F6C2C73ABCF004D5A6A /* MessageSticker.swift */,
+				07EE3F6E2C73ABEA004D5A6A /* AmountBtn.swift */,
+				07EE3F702C73AC04004D5A6A /* AddToCartBtn.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		07EE3F722C73B287004D5A6A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				07EE3F732C73B29E004D5A6A /* Enums.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +190,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0727A4022C70FF5D00538DA9 /* ContentViewVM.swift in Sources */,
+				0727A4042C70FF8900538DA9 /* Product.swift in Sources */,
 				0727A3F62C70FEF500538DA9 /* ContentView.swift in Sources */,
+				0727A4062C71035800538DA9 /* GridProductView.swift in Sources */,
+				07EE3F6F2C73ABEA004D5A6A /* AmountBtn.swift in Sources */,
 				0727A3F42C70FEF500538DA9 /* SparInternTaskApp.swift in Sources */,
+				07EE3F6D2C73ABCF004D5A6A /* MessageSticker.swift in Sources */,
+				07EE3F742C73B29E004D5A6A /* Enums.swift in Sources */,
+				07EE3F712C73AC04004D5A6A /* AddToCartBtn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
