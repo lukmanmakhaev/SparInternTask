@@ -44,7 +44,8 @@ struct AmountBtn: View {
             })
             .padding()
         }
-        .frame(maxWidth: .infinity, maxHeight: 34)
+        .frame(height: 36)
+        .frame(maxWidth: .infinity)
         .background(Color("buttonGreen"))
         .cornerRadius(40)
     }

@@ -11,13 +11,13 @@ final class ContentViewVM: ObservableObject {
     
     @Published var products = [
     Product(id: "1", name: "сыр Ламбер 500/0 230г", image: "1", cost: 99.90, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: .bigSale, discount: nil, country: nil, isFavorite: false),
-    Product(id: "2", name: "Энергетический Напит", image: "2", cost: 95699.90, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: nil, discount: nil, country: nil, isFavorite: false),
+    Product(id: "2", name: "Энергетический Напит", image: "2", cost: 95699.90, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: nil, discount: nil, country: nil, isFavorite: true),
     Product(id: "3", name: "Салат Овощной с Крабовыми Палочками", image: "3", cost: 250.90, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: nil, discount: nil, country: nil, isFavorite: false),
     Product(id: "4", name: "Дорадо Охлажденная Непотрошеная 300-400г", image: "4", cost: 59.20, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: nil, discount: 0.25, country: nil, isFavorite: false),
     Product(id: "5", name: "Ролл Маленькая Япония 216г", image: "5", cost: 367.90, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: .newProduct, discount: nil, country: nil, isFavorite: false),
     Product(id: "6", name: "Огурцы тепличные cадово-огородные", image: "6", cost: 59.20, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: .cardPrice, discount: nil, country: "Франция🇫🇷", isFavorite: false),
     Product(id: "7", name: "Манго Кео", image: "7", cost: 1298, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: .newProduct, discount: 0.25, country: nil, isFavorite: false),
-    Product(id: "8", name: "Салат Овощной с Крабовыми Палочками", image: "8", cost: 120.90, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: nil, discount: nil, country: nil, isFavorite: false),
+    Product(id: "8", name: "Салат Овощной с Крабовыми Палочками", image: "8", cost: 120.90, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: nil, discount: nil, country: nil, isFavorite: true),
     Product(id: "9", name: "Салат Овощной с Крабовыми Палочками", image: "9", cost: 1928.90, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: nil, discount: nil, country: nil, isFavorite: false),
     Product(id: "10", name: "Масло Слобода Рафинированное 1,8л", image: "10", cost: 1298.90, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: .bigSale, discount: nil, country: nil, isFavorite: false),
     Product(id: "11", name: "Салат Овощной с Крабовыми Палочками", image: "11", cost: 250.90, quantity: 0, rating: 4.1, originalPrice: 199, unitType: .kilogram, message: nil, discount: nil, country: "Франция🇫🇷", isFavorite: false),
@@ -29,39 +29,6 @@ final class ContentViewVM: ObservableObject {
     init() {
         loadCart()
     }
-    
-    func addProduct(_ product: Product, type: UnitType) {
-        if let index = products.firstIndex(where: { $0.id == product.id }) {
-            switch type {
-            case .kilogram:
-                products[index].quantity += 0.1
-            case .piece:
-                products[index].quantity += 1
-            }
-        }
-        saveCart()
-    }
-    
-    func removeProduct(_ product: Product, type: UnitType) {
-        if let index = products.firstIndex(where: { $0.id == product.id }) {
-            switch type {
-            case .kilogram:
-                products[index].quantity -= 0.1
-            case .piece:
-                products[index].quantity -= 1
-            }
-        }
-        saveCart()
-    }
-    
-    func updateUnitType(product: Product) {
-        if let index = products.firstIndex(where: { $0.id == product.id }) {
-            products[index] = product
-        }
-        saveCart()
-        print("saved")
-    }
-    
     
     func saveCart() {
         if let encoded = try? JSONEncoder().encode(products) {

@@ -9,11 +9,57 @@ import SwiftUI
 
 struct GridProductView: View {
     @Binding var product: Product
-    @State var cartBtnWidth: CGFloat = 48
     
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
-            ProductItemImageSection(image: product.image, message: product.message, rating: product.rating, discount: product.discount)
+            
+            ZStack (alignment: .topLeading) {
+                ProductItemImageSection(image: product.image, message: product.message)
+                
+                HStack (spacing: 4) {
+                    Image("starIcon")
+                        .resizable()
+                        .foregroundColor(.yellow)
+                        .frame(width: 12, height: 12)
+                    
+                    Text("\(product.rating ?? 0, specifier: "%.1f")")
+                        .font(.system(size: 12))
+                    
+                    Spacer()
+                    
+                    if let discount = product.discount {
+                        Text("\(discount * 100, specifier: "%.0f")%")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundStyle(Color("discountText"))
+                    }
+                }
+                .frame(maxHeight: .infinity, alignment: .bottom)
+                .padding(.horizontal, 6)
+                
+                VStack {
+                    Button(action: {}, label: {
+                        Image("receipt")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 16, height: 16)
+                            .padding(8)
+                    })
+                    
+                    Button(action: {
+                        product.isFavorite.toggle()
+                    }, label: {
+                        Image(product.isFavorite ? "heart.fill" : "heart")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 16, height: 16)
+                            .padding(8)
+                    })
+                }
+                .background(.white.opacity(0.8))
+                .clipShape(Capsule())
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+            .frame(maxHeight: 168)
             
             VStack  {
                 VStack (alignment: .leading) {
@@ -31,6 +77,8 @@ struct GridProductView: View {
                 .frame(maxWidth: .infinity, alignment: .topLeading)
                 .padding(4)
                 
+                Spacer()
+                
                 VStack (spacing: 4) {
                     if product.isInCart {
                         Picker("", selection: $product.unitType) {
@@ -41,10 +89,11 @@ struct GridProductView: View {
                         .pickerStyle(.segmented)
                     }
                     
-                    HStack (alignment: .bottom) {
+                    
+                    HStack (alignment: .center) {
                         if !product.isInCart {
                             VStack (alignment: .leading, spacing: 0) {
-                                HStack (spacing: 2){
+                                HStack (spacing: 2) {
                                     Text("\(product.cost, specifier: "%.2f")")
                                         .font(.system(size: 20, weight: .bold))
                                         .minimumScaleFactor(0.5)
@@ -70,7 +119,7 @@ struct GridProductView: View {
                             AmountBtn(product: $product)
                                
                         } else {
-                            AddToCartBtn(width: $cartBtnWidth, product: $product)
+                            AddToCartBtn(product: $product)
                         }
                     }
                 }
@@ -90,6 +139,5 @@ struct GridProductView_Previews: PreviewProvider {
             .frame(width: 168, height: 278)
             .shadow(color: Color("cardShadow").opacity(0.2), radius: 8)
             .environmentObject(ContentViewVM())
-        
     }
 }

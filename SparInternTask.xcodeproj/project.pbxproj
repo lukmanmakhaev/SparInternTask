@@ -20,6 +20,7 @@
 		07EE3F742C73B29E004D5A6A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE3F732C73B29E004D5A6A /* Enums.swift */; };
 		07EE3F762C73BF7F004D5A6A /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE3F752C73BF7F004D5A6A /* CartView.swift */; };
 		07EE3F782C750AB7004D5A6A /* ProductItemImageSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE3F772C750AB7004D5A6A /* ProductItemImageSection.swift */; };
+		07EE3F7A2C75388D004D5A6A /* ListProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE3F792C75388D004D5A6A /* ListProductView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		07EE3F732C73B29E004D5A6A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		07EE3F752C73BF7F004D5A6A /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		07EE3F772C750AB7004D5A6A /* ProductItemImageSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItemImageSection.swift; sourceTree = "<group>"; };
+		07EE3F792C75388D004D5A6A /* ListProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProductView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				07EE3F6B2C73ABBE004D5A6A /* SubViews */,
 				0727A4052C71035800538DA9 /* GridProductView.swift */,
+				07EE3F792C75388D004D5A6A /* ListProductView.swift */,
 				0727A3F52C70FEF500538DA9 /* ContentView.swift */,
 				0727A4012C70FF5D00538DA9 /* ContentViewVM.swift */,
 				07EE3F752C73BF7F004D5A6A /* CartView.swift */,
@@ -196,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07EE3F7A2C75388D004D5A6A /* ListProductView.swift in Sources */,
 				07EE3F762C73BF7F004D5A6A /* CartView.swift in Sources */,
 				0727A4022C70FF5D00538DA9 /* ContentViewVM.swift in Sources */,
 				07EE3F782C750AB7004D5A6A /* ProductItemImageSection.swift in Sources */,

@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct AddToCartBtn: View {
-    @Binding var width: CGFloat
     @Binding var product: Product
-    
     var body: some View {
         Button(action: {
             addProduct(type: product.unitType)
@@ -20,7 +18,7 @@ struct AddToCartBtn: View {
                 .scaledToFit()
                 .frame(height: 14)
         })
-        .frame(width: width, height: 36)
+        .frame(width: 48, height: 36)
         .background(Color("buttonGreen"))
         .cornerRadius(40)
     }

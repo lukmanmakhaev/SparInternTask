@@ -11,6 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: ContentViewVM
     
     @State var cartIsPresented = false
+    @State var isGridView = true
     
     let columns = [
         GridItem(.flexible(), spacing: 5),
@@ -19,31 +20,53 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView (showsIndicators: false){
-                LazyVGrid(columns: columns, spacing: 8) {
-                    
-                    ForEach($viewModel.products, id: \.self) { $product in
-                        GridProductView(product: $product)
-                            .shadow(color: Color("cardShadow").opacity(0.2), radius: 8)
-                            .environmentObject(viewModel)
+            Group {
+                if isGridView {
+                    ScrollView (showsIndicators: false){
+                        LazyVGrid(columns: columns, spacing: 8) {
+                            
+                            ForEach($viewModel.products, id: \.self) { $product in
+                                GridProductView(product: $product)
+                                    .shadow(color: Color("cardShadow").opacity(0.2), radius: 8)
+                                    .environmentObject(viewModel)
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 9)
+                    }
+                } else {
+                    ScrollView (showsIndicators: false) {
+                        ForEach($viewModel.products, id: \.self) { $product in
+                            ListProductView(product: $product)
+                                .environmentObject(viewModel)
+                                
+                            Divider()
+                                .frame(height: 2)
+                                .background(Color("divider"))
+                        }
                     }
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 9)
             }
             .onChange(of: viewModel.products, {
                 viewModel.saveCart()
-                print("fff")
             })
             .navigationTitle("SwiftUI")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(.white)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {}, label: {
-                        Image("gridIcon")
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            isGridView.toggle()
+                        }
+                    }, label: {
+                        Image(isGridView ? "gridIcon" : "listIcon")
                             .resizable()
                             .frame(width: 16, height: 16)
+                            .padding(11)
+                            .background(.buttonGray)
+                            .cornerRadius(12)
                     })
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -55,6 +78,9 @@ struct ContentView: View {
                             .frame(width: 16, height: 16)
                             .foregroundStyle(Color("buttonGreen"))
                             .fontWeight(.bold)
+                            .padding(11)
+                            .background(.buttonGray)
+                            .cornerRadius(12)
                     })
                     .sheet(isPresented: $cartIsPresented, content: {
                         CartView()
