@@ -8,17 +8,12 @@
 import SwiftUI
 
 struct AddToCartBtn: View {
-    @ObservedObject var viewModel: ContentViewVM
-    
     @Binding var width: CGFloat
-    @Binding var isInCart: Bool
-    @Binding var quantity: Double
+    @Binding var product: Product
     
     var body: some View {
         Button(action: {
-            isInCart.toggle()
-            quantity += 1
-            print(quantity)
+            addProduct(type: product.unitType)
         }, label: {
             Image("cart")
                 .resizable()
@@ -28,5 +23,14 @@ struct AddToCartBtn: View {
         .frame(width: width, height: 36)
         .background(Color("buttonGreen"))
         .cornerRadius(40)
+    }
+    
+    func addProduct(type: UnitType) {
+        switch type {
+        case .kilogram:
+            product.quantity += 0.1
+        case .piece:
+            product.quantity += 1
+        }
     }
 }

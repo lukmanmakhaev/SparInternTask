@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct SparInternTaskApp: App {
+    @StateObject var viewModel = ContentViewVM()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(viewModel)
         }
     }
 }

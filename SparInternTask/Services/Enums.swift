@@ -25,7 +25,9 @@ enum ProductMessage: String, CaseIterable, Codable {
     }
 }
 
-enum UnitType: String, CaseIterable, Codable  {
+enum UnitType: String, CaseIterable, Codable, Equatable {
     case piece = "Шт"
     case kilogram = "Кг"
+    
+    var id: String { self.rawValue }
 }

@@ -8,20 +8,13 @@
 import SwiftUI
 
 struct AmountBtn: View {
-    @ObservedObject var viewModel: ContentViewVM
-    
-    @Binding var quantity: Double
-    @Binding var isInCart: Bool
-
+    @Binding var product: Product
     
     var body: some View {
         HStack {
             Button(action: {
-                quantity -= 1
-                if quantity < 1 {
-                    isInCart = false
-                }
-                print(quantity)
+                removeProduct(type: product.unitType)
+                print(product.quantity)
             }, label: {
                 Text("-")
                     .font(.system(size: 24, weight: .medium))
@@ -30,7 +23,7 @@ struct AmountBtn: View {
             .padding()
             
             VStack {
-                Text("\(quantity.formatted())")
+                Text("\(product.quantity, specifier: product.specifier)")
                     .frame(maxWidth: .infinity)
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundStyle(Color.white)
@@ -42,8 +35,8 @@ struct AmountBtn: View {
             }
             
             Button(action: {
-                quantity += 1
-                print(quantity)
+                addProduct(type: product.unitType)
+                print(product.quantity)
             }, label: {
                 Text("+")
                     .font(.system(size: 24, weight: .medium))
@@ -54,5 +47,24 @@ struct AmountBtn: View {
         .frame(maxWidth: .infinity, maxHeight: 34)
         .background(Color("buttonGreen"))
         .cornerRadius(40)
+    }
+    
+    
+    func addProduct(type: UnitType) {
+        switch type {
+        case .kilogram:
+            product.quantity += 0.1
+        case .piece:
+            product.quantity = Double(Int(product.quantity)) + 1
+        }
+    }
+    
+    func removeProduct(type: UnitType) {
+        switch type {
+        case .kilogram:
+            product.quantity -= 0.1
+        case .piece:
+            product.quantity = Double(Int(product.quantity)) - 1
+        }
     }
 }

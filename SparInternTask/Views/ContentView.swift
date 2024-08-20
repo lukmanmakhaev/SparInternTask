@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel = ContentViewVM()
+    @EnvironmentObject var viewModel: ContentViewVM
+    
+    @State var cartIsPresented = false
     
     let columns = [
         GridItem(.flexible(), spacing: 5),
@@ -20,14 +22,19 @@ struct ContentView: View {
             ScrollView (showsIndicators: false){
                 LazyVGrid(columns: columns, spacing: 8) {
                     
-                    ForEach(viewModel.products, id: \.self) { product in
-                        GridProductView(viewModel: viewModel, product: product, selectedType: .kilogram)
+                    ForEach($viewModel.products, id: \.self) { $product in
+                        GridProductView(product: $product)
                             .shadow(color: Color("cardShadow").opacity(0.2), radius: 8)
+                            .environmentObject(viewModel)
                     }
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 9)
             }
+            .onChange(of: viewModel.products, {
+                viewModel.saveCart()
+                print("fff")
+            })
             .navigationTitle("SwiftUI")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .navigationBar)
@@ -40,22 +47,26 @@ struct ContentView: View {
                     })
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {}, label: {
+                    Button(action: {
+                        cartIsPresented.toggle()
+                    }, label: {
                         Image(systemName: "cart")
                             .resizable()
                             .frame(width: 16, height: 16)
                             .foregroundStyle(Color("buttonGreen"))
                             .fontWeight(.bold)
                     })
+                    .sheet(isPresented: $cartIsPresented, content: {
+                        CartView()
+                            .environmentObject(viewModel)
+                    })
                 }
             }
-        }
-        .onAppear {
-            viewModel.loadCart()
         }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(cartIsPresented: false)
+        .environmentObject(ContentViewVM())
 }
